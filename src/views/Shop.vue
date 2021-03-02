@@ -1,44 +1,37 @@
 <template>
   <div class="page__shop">
     <TitlePage title="Mon Eshop"/>
-    <div class="products__grid" v-for="product in productsArray" :key="product._id">
-      <div class="product__item">
-       {{ product._id }}
-       <h2> {{ product.title }}</h2>
-       <img :src="product.imgUrl" :alt="product.title"/>
-       {{ product.price }}
-       {{ product.description }}
-      </div>
-    
-    </div>
+    <ProductsGrid :productsArray="productsFromApi"/>
   </div>
 </template>
 
 <script>
 
 import TitlePage from "../components/TitlePage";
+import ProductsGrid from "../components/product/ProductsGrid";
 
 export default {
     components: {
-        TitlePage
+        TitlePage,ProductsGrid
     },
     data: function() {
       return {
-       productsArray:[]
+       productsFromApi:[]
       }
     },
     methods: {
-
-    },
-    created() {
-      fetch("http://localhost:3030/api/v1/products")
+      getProducts : function() {
+        return fetch("http://localhost:3030/api/v1/products")
       .then(res => res.json())
       .then(data => {
-        console.log(data,"data");
-        this.productsArray = data;
+        this.productsFromApi = data;
         }
       )
       .catch(err => console.log(err))
+      }
+    },
+    created() {
+      this.getProducts();
     }
 }
 </script>
