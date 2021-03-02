@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <TitlePage title="Page about"/>
-    <Button btnClass="btn btn-blue" btnText="Click Me" :btnFunction="clickMe" />
+    <Button btnClass="btn btn-black" btnText="Click Me" v-bind:btnFunction="clickMe" />
   </div>
 </template>
 <script>

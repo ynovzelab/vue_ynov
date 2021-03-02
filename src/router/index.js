@@ -2,6 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Contact from '../views/Contact.vue';
+import Shop from '../views/Shop.vue';
+import User from '../views/User.vue';
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,6 +17,16 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: Contact
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: Shop
+  },
+  {
+    path: '/account',
+    name: 'User',
+    component: User
   },
   {
     path: '/about',
