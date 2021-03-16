@@ -9,7 +9,7 @@
             {{productObject.price}}
         </p>
         <p>
-            <button @click="addItemToCart()">Ajouter au panier</button>
+            <button @click="() => addItemToCart(productObject)">Ajouter au panier</button>
         </p>
     </div>
 </template>

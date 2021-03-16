@@ -5,7 +5,7 @@ export default {
         // Le panier sera un tableau d'objet
         
         addTocart(product) {
-
+            
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
             let productObject = {
@@ -15,9 +15,18 @@ export default {
                 qty: 1
             }
 
-            //findIndex => renvoies l'index ou -1
+            console.log(productObject);
 
-            cart.push(productObject);
+            let indexOfExistingProduct = cart.findIndex(
+                (el) => el.id === productObject.id
+            )
+
+            if (indexOfExistingProduct !== -1) {
+                cart[indexOfExistingProduct].qty += 1
+            }
+            else {
+                cart.push(productObject)
+            }
 
             localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -26,18 +35,33 @@ export default {
             return JSON.parse(localStorage.getItem('cart'));
         },
         removeItemCart(product) {
-            // Récupérer le panier localStorage.getItem + parser
-            // Le modifier
-            // le réinsérer localStorage.setItem
+            
+            let card = JSON.parse(localStorage.getItem('cart'));
+
+            const filteredCard = card.filter((item) => {
+                return item.id !== product.id;
+            });
+
+            localStorage.setItem('cart', JSON.stringify(filteredCard));
+
         },
         clearCart() {
-            //localStorage.removeItem('cart');
+            localStorage.removeItem('cart');
         },
         removeOneQty(product) {
 
         },
         addOneQty(product) {
 
+        },
+        getCartTotal() {
+            // Montant total du panier
+            Array.reduce // Aggregat
+        },
+        getCartCount() {
+            //Nombre de qty dans le panier
+            Array.Reduce
         }
+        
     }
 }
