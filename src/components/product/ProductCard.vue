@@ -8,14 +8,25 @@
         <p>            
             {{productObject.price}}
         </p>
+        <p>
+            <button @click="addItemToCart()">Ajouter au panier</button>
+        </p>
     </div>
 </template>
 
 <script>
+    import Cart from "../../mixins/Cart";
+
     export default {
         name:"ProductCard",
+        mixins:[Cart],
         props:{
             productObject: Object
+        },
+        methods:{
+            addItemToCart: function(product) {
+                this.addTocart(product)
+            }
         }
     }
 </script>

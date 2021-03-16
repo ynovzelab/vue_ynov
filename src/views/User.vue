@@ -1,16 +1,13 @@
 <template>
     <div>
         <TitlePage title="Mon compte"/>
-        <div v-if="isLogged">
+        <div>
             <div class="user__info" v-if="user">
                 <p>Nom :{{user.firstName}}</p>
                 <p>Prénom :{{user.lastName}}</p>
                 <p>Email :{{user.email}}</p>
                 <button @click="logout">Se déconnecter</button>
             </div>
-        </div>
-        <div v-else>
-            <p>Vous n'êtes pas connecté</p>
         </div>
     </div>
 </template>
@@ -27,13 +24,11 @@ import TitlePage from "../components/TitlePage";
         data: function() {
             return {
                 user:{},
-                isLogged:false
             }
         },
         methods: {
             logout: function() {
                 localStorage.removeItem('token');
-                this.isLogged = false;
             }
         },
         created() {
@@ -47,7 +42,6 @@ import TitlePage from "../components/TitlePage";
                })
                .then(res => res.json())
                .then(data=>{
-                   this.isLogged = true;
                    this.user = data;
                })
                .catch(err => console.log(err))
